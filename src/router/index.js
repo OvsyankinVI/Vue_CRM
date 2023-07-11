@@ -19,6 +19,12 @@ const routes = [
     component: () => import('../views/app-login.vue')
   },
   {
+    path: '/plogin',
+    name: 'plogin',
+    meta: { layout: 'empty' },
+    component: () => import('../views/app-login-new.vue')
+  },
+  {
     path: '/register',
     name: 'register',
     meta: { layout: 'empty' },

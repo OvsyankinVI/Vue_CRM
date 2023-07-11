@@ -5,7 +5,7 @@
         <a  href="#">
           <i class="material-icons black-text" @click="$emit('click-on')">dehaze</i>
         </a>
-        <span class="black-text">{{ date }}</span>
+        <span class="black-text">{{ formatDate (date) }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -56,10 +56,9 @@ export default {
   beforeUnmount () {
     clearInterval(this.interval)
   },
-  filters: {
-    dateFilter: function (value) {
-      console.log(value)
-    }
+  methods: {
+    formatDate: d => d.toLocaleString('ru-RU').replace(',', ''),
+    formatDate1: d => d.toLocaleString('ru-RU').replace(',', '').slice(0, -8)
   }
 }
 </script>
