@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import messages from '../plagins/messages'
 import { useVuelidate } from '@vuelidate/core'
 import { email, required, minLength, helpers } from '@vuelidate/validators'
 
@@ -73,6 +74,11 @@ export default {
     email: '',
     password: ''
   }),
+  mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$mess(messages[this.$route.query.message])
+    }
+  },
   validations: {
     email: {
       email: helpers.withMessage('Введите корректный Email', email),
@@ -89,10 +95,6 @@ export default {
         minLength(6)
       )
     }
-  },
-  mounted () {
-    /* this.$newmess('test') */
-    console.log(this.testi)
   },
   methods: {
     submitHandler () {
