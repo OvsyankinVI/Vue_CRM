@@ -65,6 +65,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { email, required, minLength, helpers } from '@vuelidate/validators'
 
 export default {
+  name: 'app-login',
   setup: () => {
     return { v$: useVuelidate() }
   },
@@ -89,9 +90,12 @@ export default {
       )
     }
   },
+  mounted () {
+    /* this.$newmess('test') */
+    console.log(this.testi)
+  },
   methods: {
     submitHandler () {
-      console.log(this.v$)
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
