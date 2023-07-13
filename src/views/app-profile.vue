@@ -26,9 +26,9 @@
 <script>
 export default {
   methods: {
-    logout () {
-      console.log('1logout')
-      this.$router.push('/login?message=1logout')
+    async logout () {
+      await this.$router.push('/login?message=1logout')
+      this.$store.dispatch('logout')
     }
   }
 }

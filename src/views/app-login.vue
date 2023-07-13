@@ -82,10 +82,7 @@ export default {
   validations: {
     email: {
       email: helpers.withMessage('Введите корректный Email', email),
-      required: helpers.withMessage(
-        'Поле Email не должно быть пустым',
-        required
-      )
+      required: helpers.withMessage('Поле Email не должно быть пустым', required)
     },
     password: {
       required: helpers.withMessage('Введите пароль', required),
@@ -97,7 +94,7 @@ export default {
     }
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
@@ -107,8 +104,12 @@ export default {
         password: this.password
       }
 
-      console.log(formData)
-      this.$router.push('/')
+      try {
+        await this.$store.dispatch('login', formData)
+        this.$router.push('/')
+      } catch (e) {
+
+      }
     }
   }
 }
