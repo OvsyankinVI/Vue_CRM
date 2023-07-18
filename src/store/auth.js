@@ -25,11 +25,7 @@ export default {
     },
     getUid () {
       const user = firebase.auth().currentUser
-<<<<<<< HEAD
-      return user ? user.uid : null
-=======
       return user.uid
->>>>>>> d5eeba2 (test)
     },
     async logout ({ commit }) {
       await firebase.auth().signOut()

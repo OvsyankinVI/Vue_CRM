@@ -49,7 +49,7 @@ export default {
     }
   },
   computed: {
-    name() {
+    name () {
       return this.$store.getters.info.name
     }
   },
