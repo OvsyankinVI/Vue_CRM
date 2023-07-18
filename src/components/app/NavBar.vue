@@ -17,7 +17,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+          Пользователь - {{ name }}
           </router-link>
 
           <ul id="dropdown" class="dropdown-content">
@@ -46,6 +46,11 @@ export default {
       date: '',
       interval: null,
       format: ''
+    }
+  },
+  computed: {
+    name () {
+      return this.$store.getters.info.name
     }
   },
   mounted () {
