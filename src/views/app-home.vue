@@ -8,50 +8,43 @@
       </button>
     </div>
 
-    <div class="row">
-      <div class="col s12 m6 l4">
-        <div class="card light-blue bill-card">
-          <div class="card-content white-text">
-            <span class="card-title">Счет в валюте</span>
+    <PreLoader v-if="loading"/>
 
-            <p class="currency-line">
-              <span>12.0 Р</span>
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="row" v-else>
 
-      <div class="col s12 m6 l8">
-        <div class="card orange darken-3 bill-card">
-          <div class="card-content white-text">
-            <div class="card-header">
-              <span class="card-title">Курс валют</span>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Валюта</th>
-                  <th>Курс</th>
-                  <th>Дата</th>
-                </tr>
-              </thead>
+    <HomeBill
+    :rates="this.currency.rates"
+    />
 
-              <tbody>
-                <tr>
-                  <td>руб</td>
-                  <td>12121</td>
-                  <td>12.12.12</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <HomeCurrency />
+
     </div>
   </div>
 </template>
 
 <script>
+import HomeBill from '@/components/app/HomeBill.vue'
+import HomeCurrency from '@/components/app/HomeCurrency.vue'
+import PreLoader from '@/components/app/PreLoader.vue'
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      loading: true,
+      currency: {},
+      data: new Date(),
+      key: process.env.VUE_APP_FIXER
+    }
+  },
+  async mounted () {
+    this.currency = await axios.get('https://www.cbr-xml-daily.ru/latest.js').then(response => { return response.data })
+    this.loading = false
+  },
+  components: {
+    HomeBill, HomeCurrency, PreLoader
+  }
+}
 </script>
 
 <style>

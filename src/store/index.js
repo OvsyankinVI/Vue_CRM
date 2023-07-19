@@ -4,7 +4,8 @@ import info from './info'
 
 export default createStore({
   state: {
-    error: null
+    error: null,
+    curr: ''
   },
   mutations: {
     setError (state, error) {
