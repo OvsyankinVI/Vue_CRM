@@ -3,7 +3,7 @@
     <div class="page-title">
       <h3>Счет</h3>
 
-      <button class="btn waves-effect waves-light btn-small">
+      <button class="btn waves-effect waves-light btn-small" @click="refresh">
         <i class="material-icons">refresh</i>
       </button>
     </div>
@@ -16,7 +16,10 @@
     :rates="this.currency.rates"
     />
 
-    <HomeCurrency />
+    <HomeCurrency
+    :rates="this.currency.rates"
+    :date="this.currency.date"
+    />
 
     </div>
   </div>
@@ -40,6 +43,13 @@ export default {
   async mounted () {
     this.currency = await axios.get('https://www.cbr-xml-daily.ru/latest.js').then(response => { return response.data })
     this.loading = false
+  },
+  methods: {
+    async refresh () {
+      this.loading = true
+      this.currency = await axios.get('https://www.cbr-xml-daily.ru/latest.js').then(response => { return response.data })
+      this.loading = false
+    }
   },
   components: {
     HomeBill, HomeCurrency, PreLoader
