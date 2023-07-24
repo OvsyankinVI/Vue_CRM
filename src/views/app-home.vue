@@ -35,9 +35,7 @@ export default {
   data () {
     return {
       loading: true,
-      currency: {},
-      data: new Date(),
-      key: process.env.VUE_APP_FIXER
+      currency: {}
     }
   },
   async mounted () {
