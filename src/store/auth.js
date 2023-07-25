@@ -25,9 +25,6 @@ export default {
     },
     getUid () {
       const user = firebase.auth().currentUser
-      if (user.uid === null) {
-        user.uid = 'l56CWAk4skV3Uk80J2NtBnjHbo92'
-      }
       return user.uid
     },
     async logout ({ commit }) {
