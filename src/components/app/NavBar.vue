@@ -17,7 +17,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Пользователь - {{ name }}
+            {{ name }}
           </router-link>
 
           <ul id="dropdown" class="dropdown-content">
