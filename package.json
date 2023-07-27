@@ -11,12 +11,15 @@
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.3",
     "axios": "^1.4.0",
+    "chart.js": "^2.8.0",
     "core-js": "^3.8.3",
     "firebase": "^8.1.2",
     "firebase-tools": "^12.4.3",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
+    "vue-chartjs": "^3.4.2",
     "vue-router": "^4.0.3",
+    "vuejs-paginate": "^2.1.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
