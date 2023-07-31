@@ -16,6 +16,13 @@
         :key="categories.length + updateCount"
         @updated="updateCategories"
         />
+
+        <CategiryDelit
+        v-if="categories.length"
+        :categories="categories"
+        :key="categories.length + updateCount"
+        @updated="updateCategories"
+        />
       </div>
     </section>
   </div>
@@ -28,6 +35,7 @@
 <script>
 import CategiryCreate from '@/components/CategiryCreate'
 import CategiryEdit from '@/components/CategiryEdit'
+import CategiryDelit from '@/components/CategiryDelit'
 import PreLoader from '@/components/app/PreLoader.vue'
 
 export default {
@@ -42,7 +50,7 @@ export default {
     this.loading = false
   },
   components: {
-    CategiryCreate, CategiryEdit, PreLoader
+    CategiryCreate, CategiryEdit, PreLoader, CategiryDelit
   },
   methods: {
     addNewCategory (category) {

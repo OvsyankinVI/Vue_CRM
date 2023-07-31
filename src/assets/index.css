@@ -16,6 +16,33 @@
     width: 500px
 }
 
+.row .col.m6 {
+margin-top: 20px;
+}
+.prof_m {
+    display: none;
+}
+@media only screen and (max-width: 601px) {
+    .prof_m {
+        display: block;
+        list-style-type: block;
+    }
+}
+
+@media only screen and (min-width: 1140px) {
+.row .col.m6 {
+    width: 33%;
+    margin-left: auto;
+    }
+}
+
+@media only screen and (min-width: 200px) {
+nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+    height: 64px !important;
+    line-height: 64px;
+}
+}
+
 .auth-submit {
     width: 100%
 }

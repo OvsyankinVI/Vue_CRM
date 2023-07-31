@@ -33,12 +33,18 @@ export default {
     },
     async createCategory ({ commit, dispatch }, { title, limit }) {
       try {
-        let uid = await dispatch('getUid')
-        if (uid === null) {
-          uid = 'l56CWAk4skV3Uk80J2NtBnjHbo92'
-        }
+        const uid = await dispatch('getUid')
         const category = await firebase.database().ref(`/users/${uid}/categories`).push({ title, limit })
         return { title, limit, id: category.key }
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
+    async deleteCategory ({ commit, dispatch }, { id }) {
+      try {
+        const uid = await dispatch('getUid')
+        await firebase.database().ref(`/users/${uid}/categories`).child(id).remove()
       } catch (e) {
         commit('setError', e)
         throw e

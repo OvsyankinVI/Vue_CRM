@@ -3,7 +3,7 @@
 
       <navbar @click-on="isopen = !isopen" />
 
-      <sidebar :opened="isopen" />
+      <sidebar @click-on="isopen = !isopen" :opened="isopen" />
 
       <main class="app-content" :class="{full: !isopen}">
         <div class="app-page">

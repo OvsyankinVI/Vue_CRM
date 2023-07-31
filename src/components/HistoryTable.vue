@@ -5,7 +5,6 @@
         <th>#</th>
         <th>Сумма</th>
         <th>Дата</th>
-        <th>Категория</th>
         <th>Тип</th>
         <th>Открыть</th>
       </tr>
@@ -19,7 +18,6 @@
         <td>{{ idx + 1 }}</td>
         <td>{{ records.amount + ' ' + '₽' }}</td>
         <td>{{ records.date.slice(0, 10) }}</td>
-        <td>{{ records.categoryName }}</td>
         <td>
           <span
             class="white-text badge"

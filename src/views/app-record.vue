@@ -127,8 +127,9 @@ export default {
     canCreateRecord () {
       if (this.type === 'income') {
         return true
-      }
-      return this.info.bill >= this.amount
+      } else if (this.description === '') {
+        return
+      } return this.info.bill >= this.amount
     }
   },
   methods: {
@@ -154,6 +155,8 @@ export default {
           this.amount = 1
           this.description = ''
         } catch (e) {}
+      } else if (this.description === '') {
+        this.$mess('Введите название операции')
       } else {
         this.$mess(`Для данной операции на счете не хватает ${this.amount - this.info.bill} рублей`)
       }

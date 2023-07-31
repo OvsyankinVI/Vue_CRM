@@ -7,7 +7,7 @@
     :to="link.url"
     >
       <li>
-          <a href="#" class="waves-effect waves-orange pointer">{{ link.title }}</a>
+          <a href="#" class="waves-effect waves-orange pointer" @click="$emit('click-on')">{{ link.title }}</a>
       </li>
     </router-link>
   </ul>

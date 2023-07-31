@@ -21,11 +21,11 @@
 <script>
 import HistoryTable from '@/components/HistoryTable.vue'
 import PreLoader from '@/components/app/PreLoader.vue'
-import { Bar } from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 
 export default {
   name: 'app-history',
-  extends: Bar,
+  extends: Pie,
   data: () => ({
     loading: true,
     records: [],
@@ -54,7 +54,6 @@ export default {
       this.records = this.records.map(record => {
         return {
           ...record,
-          categoryName: this.categories.find(c => c.id === record.categoryId).title,
           typeClass: record.type === 'income' ? 'green' : 'red',
           typeText: record.type === 'income' ? 'Доход' : 'Расход'
         }
