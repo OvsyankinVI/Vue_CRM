@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "ovi-vue-crm-db856"
-  }
+    "default": "ovi-home-finance",
+    "ovi": "ovi-home-finance",
+    "test": "housekeeping-32770"
+  },
+  "targets": {},
+  "etags": {}
 }

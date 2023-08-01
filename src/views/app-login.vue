@@ -1,7 +1,7 @@
 <template>
   <form class='card auth-card' @submit.prevent='submitHandler'>
     <div class='card-content'>
-      <span class='card-title center'>Housekeeping</span>
+      <span class='card-title center'>Home finance</span>
       <div class='input-field'>
         <input
           id='email'
@@ -34,7 +34,7 @@
               (v$.password.$dirty && !v$.password.minLength),
           }'
         />
-        <label for='password'>Пароль</label>
+        <label for='password'>Password</label>
         <small
           class='helper-text invalid'
           v-for='error of v$.password.$errors'
