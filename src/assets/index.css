@@ -20,6 +20,9 @@
 html {
     font-size: 10px;
 }
+.helper-text.invalid {
+    font-size: 8px;
+}
 .auth-card {
     max-width: 350px;
     width: 100%;

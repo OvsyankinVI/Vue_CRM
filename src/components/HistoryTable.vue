@@ -3,11 +3,11 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Открыть</th>
-          <th>Сумма</th>
-          <th>Дата</th>
-          <th>Тип</th>
-          <th>Удалить</th>
+          <th>Open</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Delete</th>
         </tr>
       </thead>
 
@@ -61,7 +61,7 @@ export default {
     async submitHandler (id) {
       try {
         await this.$store.dispatch('deleteRecord', id)
-        this.$mess('Запись удалена')
+        this.$mess('Record deleted')
         this.$router.push('/planning')
       } catch (e) {}
     }

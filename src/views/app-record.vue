@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>New record</h3>
     </div>
     <section>
     <PreLoader v-if="loading"/>
 
-    <p class="center" v-else-if="!categories.length">Категорий пока что нет. <router-link to="/categories">Добавить</router-link></p>
+    <p class="center" v-else-if="!categories.length">No recordings yet. <router-link to="/categories">Add</router-link></p>
 
     <div v-else>
       <form class="form" @submit.prevent="submitHandler">
@@ -20,26 +20,26 @@
             {{ c.title }}
             </option>
           </select>
-          <label>Выберите категорию</label>
+          <label>Select a category</label>
         </div>
 
         <p>
           <label>
             <input class="with-gap" name="type" type="radio" value="income" v-model="type"/>
-            <span>Доход</span>
+            <span>Income</span>
           </label>
         </p>
 
         <p>
           <label>
             <input class="with-gap" name="type" type="radio" value="outcome" v-model="type"/>
-            <span>Расход</span>
+            <span>Outcome</span>
           </label>
         </p>
 
         <div class="input-field">
           <input id="amount" type="number" v-model.number="amount"/>
-          <label for="amount">Сумма</label>
+          <label for="amount">Amount</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.amount.$errors'
@@ -51,7 +51,7 @@
 
         <div class="input-field">
           <input id="description" type="text" v-model="description"/>
-          <label for="description">Описание</label>
+          <label for="description">Description</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.description.$errors'
@@ -62,7 +62,7 @@
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Создать
+          Create
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -93,12 +93,12 @@ export default {
   }),
   validations: {
     description: {
-      required: helpers.withMessage('Введите описание', required)
+      required: helpers.withMessage('Enter description', required)
     },
     amount: {
       minValue: helpers.withMessage(
         ({ $params }) =>
-      `Минимальное значение ${$params.min}`, minValue(100)
+      `Minimal value ${$params.min}`, minValue(100)
       )
     }
   },
@@ -150,15 +150,15 @@ export default {
             ? this.info.bill + this.amount
             : this.info.bill - this.amount
           await this.$store.dispatch('updateInfo', { bill })
-          this.$mess('Запись успешно создана')
+          this.$mess('The record was successfully created')
           this.v$.$reset()
           this.amount = 1
           this.description = ''
         } catch (e) {}
       } else if (this.description === '') {
-        this.$mess('Введите название операции')
+        this.$mess('Enter the name of the operation')
       } else {
-        this.$mess(`Для данной операции на счете не хватает ${this.amount - this.info.bill} рублей`)
+        this.$mess(`There are not enough ${this.amount - this.info.bill} rubles on the account for this operation`)
       }
     }
   }

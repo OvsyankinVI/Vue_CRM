@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История расходов</h3>
+      <h3>Expense history</h3>
     </div>
 
     <div class="history-chart">
@@ -10,7 +10,7 @@
 
     <PreLoader v-if="loading"/>
 
-    <p class="center" v-else-if="!records.length">Записей пока нет.</p>
+    <p class="center" v-else-if="!records.length">No recordings yet.</p>
 
     <section v-else>
       <HistoryTable :records="records"/>
@@ -39,7 +39,6 @@ export default {
     }
   }),
   async mounted () {
-    /* this.records = await this.$store.dispatch('fetchRecord') */
     this.records = await this.$store.dispatch('fetchRecord')
     this.categories = await this.$store.dispatch('fetchCategories')
     this.setup()
@@ -55,13 +54,13 @@ export default {
         return {
           ...record,
           typeClass: record.type === 'income' ? 'green' : 'red',
-          typeText: record.type === 'income' ? 'Доход' : 'Расход'
+          typeText: record.type === 'income' ? 'Income' : 'Expense'
         }
       })
       this.renderChart({
         labels: this.categories.map(c => c.title),
         datasets: [{
-          label: 'Расходы по категориям',
+          label: 'Expenses by category',
           data: this.categories.map(c => {
             return this.records.reduce((total, r) => {
               if (r.categoryId === c.id && r.type === 'outcome') {

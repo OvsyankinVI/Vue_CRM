@@ -4,10 +4,10 @@
     <div v-else>
       <div class="breadcrumb-wrap">
         <router-link to="/history" class="black-text">
-          <a class="breadcrumb">История</a>
+          <a class="breadcrumb">History</a>
         </router-link>
         <a class="breadcrumb">
-          {{ record.type === 'income' ? ' Доход' : 'Расход' }}
+          {{ record.type === 'income' ? 'Income' : 'Outcome' }}
         </a>
       </div>
       <div class="row">
@@ -20,9 +20,9 @@
             }"
           >
             <div class="card-content white-text">
-              <p>Описание: {{ record.description }}</p>
-              <p>Сумма: {{ record.amount + ' ' + '₽' }}</p>
-              <p>Категория: {{ record.categoryName }}</p>
+              <p>Description: {{ record.description }}</p>
+              <p>Amount: {{ record.amount + ' ' + '₽' }}</p>
+              <p>Category: {{ record.categoryName }}</p>
 
               <small>{{ record.date.slice(0, 10) }}</small>
             </div>

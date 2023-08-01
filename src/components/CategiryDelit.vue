@@ -2,7 +2,7 @@
 <div class="col s12 m6">
     <div>
     <div class="page-subtitle">
-        <h4>Удалить</h4>
+        <h4>Delete</h4>
     </div>
 
     <form @submit.prevent="submitHandler">
@@ -16,11 +16,11 @@
             {{ c.title }}
             </option>
         </select>
-        <label>Выберите категорию</label>
+        <label>Select a category</label>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-        Удалить
+        Delete
         <i class="material-icons right">send</i>
         </button>
     </form>
@@ -76,7 +76,7 @@ export default {
         }
         await this.$store.dispatch('deleteCategory', categoryData)
         this.v$.$reset()
-        this.$mess('Категория удалена')
+        this.$mess('Category deleted')
         this.$emit('updated', categoryData)
       } catch (e) {}
     }

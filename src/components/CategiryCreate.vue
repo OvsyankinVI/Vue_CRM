@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Создать</h4>
+        <h4>Create</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -15,7 +15,7 @@
               (v$.title.$dirty && !v$.title.required)
             }'
           />
-          <label for="name">Название</label>
+          <label for="name">Title</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.title.$errors'
@@ -34,7 +34,7 @@
               (v$.limit.$dirty && !v$.limit.minValue)
           }'
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">Limit</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.limit.$errors'
@@ -45,7 +45,7 @@
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Создать
+          Create
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -67,12 +67,12 @@ export default {
   }),
   validations: {
     title: {
-      required: helpers.withMessage('Введите название', required)
+      required: helpers.withMessage('Enter a name', required)
     },
     limit: {
       minValue: helpers.withMessage(
         ({ $params }) =>
-      `Минимальное значение ${$params.min}`, minValue(100)
+      `Minimal value ${$params.min}`, minValue(100)
       )
     }
   },
@@ -92,7 +92,7 @@ export default {
         this.title = ''
         this.limit = 100
         this.v$.$reset()
-        this.$mess('Создана новая категория')
+        this.$mess('New category created')
         this.$emit('created', category)
       } catch (e) {}
     }

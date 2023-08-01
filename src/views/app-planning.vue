@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планирование</h3>
+      <h3>Planning</h3>
       <h4>{{ info.bill + ' ' + '₽' }}</h4>
     </div>
     <PreLoader v-if="loading"/>
 
-    <p class="center" v-else-if="!categories.length">Категорий пока что нет. <router-link to="/categories">Добавить</router-link></p>
+    <p class="center" v-else-if="!categories.length">No recordings yet. <router-link to="/categories">Add</router-link></p>
 
     <section v-else>
       <div
@@ -15,7 +15,7 @@
       >
         <p>
           <strong>{{ cat.title }}</strong>
-          {{ cat.spend }}₽ из {{ cat.limit }}₽
+          {{ cat.spend }}₽ of {{ cat.limit }}₽
         </p>
         <div class="progress">
           <div

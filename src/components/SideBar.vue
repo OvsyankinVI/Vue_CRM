@@ -19,11 +19,11 @@ export default {
   data () {
     return {
       links: [
-        { title: 'Счет', url: '/' },
-        { title: 'История', url: '/history' },
-        { title: 'Планирование', url: '/planning' },
-        { title: 'Новая запись', url: '/record' },
-        { title: 'Категории', url: '/categories' }
+        { title: 'Bill', url: '/' },
+        { title: 'History', url: '/history' },
+        { title: 'Planning', url: '/planning' },
+        { title: 'New record', url: '/record' },
+        { title: 'Categories', url: '/categories' }
       ],
       active: false
     }

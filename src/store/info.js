@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 
 export default {
   state: {
-    info: {}/* { name: 'OVI', bill: 10000 } */
+    info: {}
   },
   mutations: {
     setInfo (state, info) {

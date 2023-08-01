@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>Profile</h3>
     </div>
 
     <form class="form" @submit.prevent='submitHandler'>
@@ -11,7 +11,7 @@
           type="text"
           v-model="name"
         />
-        <label for="description">Имя</label>
+        <label for="description">Name</label>
         <small
           class='helper-text invalid'
           v-for='error of v$.name.$errors'
@@ -22,13 +22,13 @@
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Обновить
+        Update
         <i class="material-icons right">send</i>
       </button>
       <br><br>
     </form>
     <router-link @click="logout" to="/login" class="btn waves-effect waves-light" type="submit">
-        Выйти
+      Exit
       </router-link>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
   },
   validations: {
     name: {
-      required: helpers.withMessage('Введите имя', required)
+      required: helpers.withMessage('Enter name', required)
     }
   },
   mounted () {

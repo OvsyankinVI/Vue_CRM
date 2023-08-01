@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>Edit</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -16,7 +16,7 @@
               {{ c.title }}
             </option>
           </select>
-          <label>Выберите категорию</label>
+          <label>Select a category</label>
         </div>
 
         <div class="input-field">
@@ -28,7 +28,7 @@
               (v$.title.$dirty && !v$.title.required)
             }'
           />
-          <label for="name">Название</label>
+          <label for="name">Title</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.title.$errors'
@@ -47,7 +47,7 @@
               (v$.limit.$dirty && !v$.limit.minValue)
           }'
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">Limit</label>
           <small
             class='helper-text invalid'
             v-for='error of v$.limit.$errors'
@@ -58,7 +58,7 @@
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          Update
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -89,12 +89,12 @@ export default {
   }),
   validations: {
     title: {
-      required: helpers.withMessage('Введите название', required)
+      required: helpers.withMessage('Enter title', required)
     },
     limit: {
       minValue: helpers.withMessage(
         ({ $params }) =>
-      `Минимальное значение ${$params.min}`, minValue(100)
+      `Minimal value ${$params.min}`, minValue(100)
       )
     }
   },
@@ -135,7 +135,7 @@ export default {
         this.title = ''
         this.limit = 100
         this.v$.$reset()
-        this.$mess('Категория обновлена')
+        this.$mess('Category updated')
         this.$emit('updated', categoryData)
       } catch (e) {}
     }
