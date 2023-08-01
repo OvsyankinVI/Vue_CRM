@@ -16,6 +16,35 @@
         display: none;
     }
 }
+.orange.lighten-1 {
+    background-color: #D9B573 !important;
+}
+
+.blue {
+    background-color: #ca675e !important;
+}
+.orange.darken-3 {
+    background-color: #686483 !important;
+}
+.light-blue {
+    background-color: #7e9084 !important;
+}
+html, .sidenav {
+    background-color: #d9d9d9d5;
+}
+.progress {
+    background-color: #c9e4e1;
+}
+.btn, .btn-large, .btn-small {
+    background-color: #8db1ae;
+}
+.app-sidenav {
+    width: 159px !important;
+}
+.app-content {
+    padding-top: 64px;
+    padding-left: 0 !important;
+}
 @media only screen and (max-width: 500px) {
 html {
     font-size: 10px;
