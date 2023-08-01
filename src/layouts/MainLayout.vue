@@ -1,5 +1,7 @@
 <template>
-    <div class="app-main-layout">
+  <div>
+    <PreLoader v-if="loading"/>
+    <div v-else class="app-main-layout">
 
       <navbar @click-on="isopen = !isopen" />
 
@@ -17,26 +19,30 @@
         </router-link>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 import navbar from '../components/app/NavBar.vue'
 import sidebar from '../components/SideBar.vue'
+import PreLoader from '@/components/app/PreLoader.vue'
 
 export default {
   name: 'mail-layout',
   data () {
     return {
-      isopen: true
+      isopen: false,
+      loading: true
     }
   },
   async mounted () {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
+    this.loading = false
   },
   components: {
-    navbar, sidebar
+    navbar, sidebar, PreLoader
   }
 }
 </script>

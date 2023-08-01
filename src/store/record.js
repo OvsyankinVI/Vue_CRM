@@ -30,6 +30,15 @@ export default {
         commit('setError', e)
         throw e
       }
+    },
+    async deleteRecord ({ commit, dispatch }, id) {
+      try {
+        const uid = await dispatch('getUid')
+        await firebase.database().ref(`/users/${uid}/records`).child(id).remove()
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
     }
   }
 }
