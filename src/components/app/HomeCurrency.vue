@@ -9,7 +9,7 @@
           <thead>
             <tr>
               <th>Currency</th>
-              <th>Course</th>
+              <th>Rate</th>
               <th>Date</th>
             </tr>
           </thead>
@@ -35,7 +35,7 @@ export default {
   props: ['rates', 'date'],
   data () {
     return {
-      currencies: ['USD', 'GEL']
+      currencies: ['USD', 'EUR', 'GEL']
     }
   },
   methods: {

@@ -85,15 +85,21 @@ export default {
         this.v$.$touch()
       }
       try {
-        const category = await this.$store.dispatch('createCategory', {
-          title: this.title,
-          limit: this.limit
-        })
-        this.title = ''
-        this.limit = 100
-        this.v$.$reset()
-        this.$mess('New category created')
-        this.$emit('created', category)
+        if (this.title === '') {
+          this.$mess('Enter the name of the category')
+        } else if (this.limit <= 10) {
+          this.$mess('Limit cannot be less than 100')
+        } else {
+          const category = await this.$store.dispatch('createCategory', {
+            title: this.title,
+            limit: this.limit
+          })
+          this.title = ''
+          this.limit = 100
+          this.v$.$reset()
+          this.$mess('New category created')
+          this.$emit('created', category)
+        }
       } catch (e) {}
     }
   }

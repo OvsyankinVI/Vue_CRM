@@ -21,7 +21,7 @@ export default {
   props: ['rates'],
   data () {
     return {
-      currencies: ['USD', 'GEL']
+      currencies: ['USD', 'EUR', 'GEL']
 
     }
   },

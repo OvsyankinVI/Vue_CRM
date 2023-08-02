@@ -30,7 +30,7 @@
     background-color: #7e9084 !important;
 }
 html, .sidenav {
-    background-color: #d9d9d9d5;
+    background-color: #d9d9d9f4;
 }
 .progress {
     background-color: #c9e4e1;
@@ -211,8 +211,8 @@ nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
     -ms-flex-align: center;
     align-items: center;
     border-bottom: 2px solid #fff;
-    padding-bottom: 1rem;
-    padding-top: 1.5rem
+    padding-bottom: 0.7rem;
+    padding-top: 0.7rem
 }
 
 .currency-line span {
