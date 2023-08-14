@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import messageplagin from './plagins/message.pl'
 import firebase from 'firebase/app'
+import PreLoader from '@/components/app/PreLoader.vue'
+import axios from 'axios'
 import 'firebase/auth'
 import 'firebase/database'
 import 'materialize-css/dist/js/materialize.min.js'
@@ -19,4 +21,8 @@ firebase.initializeApp({
   measurementId: 'G-BB2GCP41DX'
 })
 
+createApp(App).component('PreLoader', PreLoader)
+
 createApp(App).use(store).use(router).use(messageplagin).mount('#app')
+
+createApp(App).use(axios)

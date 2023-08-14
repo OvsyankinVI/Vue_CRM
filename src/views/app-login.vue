@@ -1,7 +1,7 @@
 <template>
   <form class='card auth-card' @submit.prevent='submitHandler'>
     <div class='card-content'>
-      <span class='card-title'>Домашняя бухгалтерия</span>
+      <span class='card-title center'>Home finance</span>
       <div class='input-field'>
         <input
           id='email'
@@ -34,7 +34,7 @@
               (v$.password.$dirty && !v$.password.minLength),
           }'
         />
-        <label for='password'>Пароль</label>
+        <label for='password'>Password</label>
         <small
           class='helper-text invalid'
           v-for='error of v$.password.$errors'
@@ -47,14 +47,14 @@
     <div class='card-action'>
       <div>
         <button class='btn waves-effect waves-light auth-submit' type='submit'>
-          Войти
+          Sign in
           <i class='material-icons right'>send</i>
         </button>
       </div>
 
       <p class='center'>
-        Нет аккаунта?
-        <router-link to='/register'>Зарегистрироваться</router-link>
+        No account?
+        <router-link to='/register'>Sign up</router-link>
       </p>
     </div>
   </form>

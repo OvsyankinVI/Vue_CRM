@@ -1,20 +1,31 @@
 <template>
   <div>
-    <div class="breadcrumb-wrap">
-      <a href="/history" class="breadcrumb">История</a>
-      <a class="breadcrumb">
-        Расход
-      </a>
-    </div>
-    <div class="row">
-      <div class="col s12 m6">
-        <div class="card red">
-          <div class="card-content white-text">
-            <p>Описание:</p>
-            <p>Сумма:</p>
-            <p>Категория:</p>
+    <PreLoader v-if="loading"/>
+    <div v-else>
+      <div class="breadcrumb-wrap">
+        <router-link to="/history" class="black-text">
+          <a class="breadcrumb">History</a>
+        </router-link>
+        <a class="breadcrumb">
+          {{ record.type === 'income' ? 'Income' : 'Outcome' }}
+        </a>
+      </div>
+      <div class="row">
+        <div class="col s12 m6">
+          <div
+            class="card"
+            :class="{
+              'red': record.type === 'outcome',
+              'green': record.type === 'income'
+            }"
+          >
+            <div class="card-content white-text">
+              <p>Description: {{ record.description }}</p>
+              <p>Amount: {{ record.amount + ' ' + '₽' }}</p>
+              <p>Category: {{ record.categoryName }}</p>
 
-            <small>12.12.12</small>
+              <small>{{ record.date.slice(0, 10) }}</small>
+            </div>
           </div>
         </div>
       </div>
@@ -23,6 +34,28 @@
 </template>
 
 <script>
+import PreLoader from '@/components/app/PreLoader.vue'
+
+export default {
+  name: 'app-detail',
+  data: () => ({
+    record: null,
+    loading: true
+  }),
+  async mounted () {
+    const id = this.$route.params.id
+    const record = await this.$store.dispatch('fetchRecordById', id)
+    const category = await this.$store.dispatch('fetchCategoriesById', record.categoryId)
+    this.record = {
+      ...record,
+      categoryName: category.title
+    }
+    this.loading = false
+  },
+  components: {
+    PreLoader
+  }
+}
 </script>
 
 <style>

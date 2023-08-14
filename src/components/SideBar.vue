@@ -7,7 +7,7 @@
     :to="link.url"
     >
       <li>
-          <a href="#" class="waves-effect waves-orange pointer">{{ link.title }}</a>
+          <a href="#" class="waves-effect waves-orange pointer" @click="$emit('click-on')">{{ link.title }}</a>
       </li>
     </router-link>
   </ul>
@@ -19,11 +19,11 @@ export default {
   data () {
     return {
       links: [
-        { title: 'Счет', url: '/' },
-        { title: 'История', url: '/history' },
-        { title: 'Планирование', url: '/planning' },
-        { title: 'Новая запись', url: '/record' },
-        { title: 'Категории', url: '/categories' }
+        { title: 'Bill', url: '/' },
+        { title: 'History', url: '/history' },
+        { title: 'Planning', url: '/planning' },
+        { title: 'New record', url: '/record' },
+        { title: 'Categories', url: '/categories' }
       ],
       active: false
     }

@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent='submitHandler'>
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
+      <span class="card-title center">Home finance</span>
       <div class='input-field'>
         <input
           id='email'
@@ -33,7 +33,7 @@
               (v$.password.$dirty && !v$.password.minLength),
           }'
         />
-        <label for='password'>Пароль</label>
+        <label for='password'>Password</label>
         <small
           class='helper-text invalid'
           v-for='error of v$.password.$errors'
@@ -52,7 +52,7 @@
               (v$.name.$dirty && !v$.name.required)
           }'
           />
-        <label for="name">Имя</label>
+        <label for="name">Name</label>
         <small
           class='helper-text invalid'
           v-for='error of v$.name.$errors'
@@ -64,21 +64,21 @@
       <p>
         <label>
           <input type="checkbox" v-model="agree"/>
-          <span>С правилами согласен</span>
+          <span>I agree with the rules</span>
         </label>
       </p>
     </div>
     <div class="card-action">
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
-          Зарегистрироваться
+          Sign up
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Уже есть аккаунт?
-        <router-link to="/login">Войти!</router-link>
+        Already have an account?
+        <router-link to="/login">Sign in!</router-link>
       </p>
     </div>
   </form>
@@ -101,22 +101,22 @@ export default {
   }),
   validations: {
     email: {
-      email: helpers.withMessage('Введите корректный Email', email),
+      email: helpers.withMessage('Enter correct Email', email),
       required: helpers.withMessage(
-        'Поле Email не должно быть пустым',
+        'The Email field should not be empty',
         required
       )
     },
     password: {
-      required: helpers.withMessage('Введите пароль', required),
+      required: helpers.withMessage('Enter password', required),
       minLength: helpers.withMessage(
         ({ $params, $model }) =>
-        `Пароль должен быть ${$params.min} символов. Сейчас он  ${$model.length}`,
+        `The password must be ${$params.min} symbols. Now it's  ${$model.length}`,
         minLength(6)
       )
     },
     name: {
-      required: helpers.withMessage('Введите имя', required)
+      required: helpers.withMessage('Enter name', required)
     },
     agree: { checked: v => v }
   },

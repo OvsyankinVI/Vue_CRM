@@ -7,7 +7,9 @@
         </a>
         <span class="black-text">{{ formatDate (date) }}</span>
       </div>
-
+      <router-link to="/profile" class="black-text prof_m">
+        <i class="material-icons">account_circle</i>
+      </router-link>
       <ul class="right hide-on-small-and-down">
         <li>
           <router-link
@@ -17,7 +19,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-          Пользователь - {{ name }}
+            {{ name }}
           </router-link>
 
           <ul id="dropdown" class="dropdown-content">

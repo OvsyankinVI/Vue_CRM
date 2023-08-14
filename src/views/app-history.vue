@@ -1,48 +1,105 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>Expense history</h3>
     </div>
 
     <div class="history-chart">
-      <canvas></canvas>
+      <canvas ref="canvas"></canvas>
     </div>
 
-    <section>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Категория</th>
-            <th>Тип</th>
-            <th>Открыть</th>
-          </tr>
-        </thead>
+    <PreLoader v-if="loading"/>
 
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>1212</td>
-            <td>12.12.32</td>
-            <td>name</td>
-            <td>
-              <span class="white-text badge red">Расход</span>
-            </td>
-            <td>
-              <button class="btn-small btn">
-                <i class="material-icons">open_in_new</i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <p class="center" v-else-if="!records.length">No recordings yet.</p>
+
+    <section v-else>
+      <HistoryTable :records="records"/>
     </section>
   </div>
 </template>
 
 <script>
+import HistoryTable from '@/components/HistoryTable.vue'
+import PreLoader from '@/components/app/PreLoader.vue'
+import { Pie } from 'vue-chartjs'
+
+export default {
+  name: 'app-history',
+  extends: Pie,
+  data: () => ({
+    loading: true,
+    records: [],
+    categories: [],
+    chartData: {
+      labels: ['January', 'February', 'March'],
+      datasets: [{ data: [40, 20, 12] }]
+    },
+    chartOptions: {
+      responsive: true
+    }
+  }),
+  async mounted () {
+    this.records = await this.$store.dispatch('fetchRecord')
+    this.categories = await this.$store.dispatch('fetchCategories')
+    this.setup()
+
+    this.loading = false
+  },
+  components: {
+    HistoryTable, PreLoader
+  },
+  methods: {
+    setup () {
+      this.records = this.records.map(record => {
+        return {
+          ...record,
+          typeClass: record.type === 'income' ? 'green' : 'red',
+          typeText: record.type === 'income' ? 'Income' : 'Expense'
+        }
+      })
+      this.renderChart({
+        labels: this.categories.map(c => c.title),
+        datasets: [{
+          label: 'Expenses by category',
+          data: this.categories.map(c => {
+            return this.records.reduce((total, r) => {
+              if (r.categoryId === c.id && r.type === 'outcome') {
+                return (total + r.amount)
+              } return total
+            }, 0)
+          }),
+          backgroundColor: [
+            'rgba(168, 150, 50, 0.2)',
+            'rgba(122, 225, 245, 0.2)',
+            'rgba(245, 2, 9, 0.2)',
+            'rgba(245, 73, 14, 0.2)',
+            'rgba(109, 173, 92, 0.2)',
+            'rgba(136, 171, 169, 0.2)',
+            'rgba(242, 201, 235, 0.2)',
+            'rgba(98, 245, 237, 0.2)',
+            'rgba(245, 214, 73, 0.2)',
+            'rgba(173, 159, 92, 0.2)',
+            'rgba(242, 15, 59, 0.2)'
+          ],
+          borderColor: [
+            'rgba(168, 150, 50, 1)',
+            'rgba(122, 225, 245, 1)',
+            'rgba(245, 2, 9, 1)',
+            'rgba(245, 73, 14, 1)',
+            'rgba(109, 173, 92, 1)',
+            'rgba(136, 171, 169, 1)',
+            'rgba(242, 201, 235, 1)',
+            'rgba(98, 245, 237, 1)',
+            'rgba(245, 214, 73, 1)',
+            'rgba(173, 159, 92, 1)',
+            'rgba(242, 15, 59, 1)'
+          ],
+          borderWidth: 1
+        }]
+      })
+    }
+  }
+}
 </script>
 
 <style>

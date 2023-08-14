@@ -1,10 +1,13 @@
 import { createStore } from 'vuex'
 import auth from './auth'
 import info from './info'
+import categories from './categories'
+import record from './record'
 
 export default createStore({
   state: {
-    error: null
+    error: null,
+    curr: ''
   },
   mutations: {
     setError (state, error) {
@@ -18,6 +21,6 @@ export default createStore({
     error: s => s.error
   },
   modules: {
-    auth, info
+    auth, info, categories, record
   }
 })
